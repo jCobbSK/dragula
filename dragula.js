@@ -195,7 +195,7 @@ function dragula (initialContainers, options) {
   }
 
   function start (context) {
-    if (isCopy(context.item, context.source)) {
+    if (isCopy(context.item, context.source) || true) {
       _copy = context.item.cloneNode(true);
       drake.emit('cloned', _copy, context.item, 'copy');
     }
@@ -309,6 +309,7 @@ function dragula (initialContainers, options) {
       drake.emit('out', item, _lastDropTarget, _source);
     }
     drake.emit('dragend', item);
+    item.parentElement.removeChild(item);
     _source = _item = _copy = _initialSibling = _currentSibling = _renderTimer = _lastDropTarget = null;
   }
 
